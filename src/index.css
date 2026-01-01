@@ -1,0 +1,73 @@
+:root {
+  /* Deep Space Palette */
+  --color-bg-deep: #050510;
+  --color-bg-panel: #0f1020;
+  --color-accent-primary: #00f0ff; /* Cyan */
+  --color-accent-secondary: #7000ff; /* Purple */
+  --color-text-main: #e0e0e0;
+  --color-text-muted: #8080aa;
+  --color-border: #1a1b30;
+  
+  --font-main: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --shadow-glow: 0 0 20px rgba(0, 240, 255, 0.15);
+  --glass-panel: rgba(15, 16, 32, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg-deep);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-secondary);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+input, textarea {
+  background: transparent;
+  color: inherit;
+  border: none;
+  font-family: inherit;
+}
+input:focus, textarea:focus {
+  outline: none;
+}

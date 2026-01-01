@@ -1,0 +1,109 @@
+.audio-controls {
+    padding: 10px 40px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+}
+
+.btn-record {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(112, 0, 255, 0.1);
+    color: var(--color-accent-secondary);
+    border: 1px solid var(--color-accent-secondary);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.btn-record:hover {
+    background: rgba(112, 0, 255, 0.2);
+    box-shadow: 0 0 10px rgba(112, 0, 255, 0.3);
+}
+
+.recording-status {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #ff4040;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.recording-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pulse {
+    width: 10px;
+    height: 10px;
+    background-color: #ff4040;
+    border-radius: 50%;
+    animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 64, 64, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(255, 64, 64, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 64, 64, 0);
+    }
+}
+
+.btn-stop {
+    color: #ff4040;
+    padding: 8px;
+    border: 1px solid #ff4040;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-stop:hover {
+    background: rgba(255, 64, 64, 0.1);
+}
+
+.audio-player-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.native-audio {
+    height: 32px;
+    flex: 1;
+    max-width: 400px;
+    filter: invert(1) hue-rotate(180deg);
+    /* Quick hack to make default player dark-ish */
+    opacity: 0.8;
+}
+
+.btn-delete-audio {
+    color: var(--color-text-muted);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.btn-delete-audio:hover {
+    color: #ff4040;
+    background: rgba(255, 64, 64, 0.1);
+}
