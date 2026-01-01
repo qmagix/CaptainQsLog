@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
 import { useLogs } from '../store/LogContext';
 import { Download, Loader } from 'lucide-react';
 
@@ -78,7 +77,15 @@ const ExportLogs = () => {
         // Generate Zip
         try {
             const content = await zip.generateAsync({ type: "blob" });
-            saveAs(content, `captains_log_export_${new Date().toISOString().slice(0, 10)}.zip`);
+            const blob = new Blob([content], { type: "application/zip" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `captains_log_export_${new Date().toISOString().slice(0, 10)}.zip`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
         } catch (err) {
             console.error("Export failed:", err);
             alert("Failed to create export zip.");
