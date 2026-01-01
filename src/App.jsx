@@ -1,16 +1,24 @@
 import React from 'react';
-import { LogProvider } from './store/LogContext';
+import { LogProvider, useLogs } from './store/LogContext';
 import LogList from './components/LogList';
 import LogEditor from './components/LogEditor';
 import './App.css';
 
+const MainLayout = () => {
+  const { activeLogId } = useLogs();
+
+  return (
+    <div className={`app-container ${activeLogId ? 'mobile-view-editor' : 'mobile-view-list'}`}>
+      <LogList />
+      <LogEditor />
+    </div>
+  );
+};
+
 function App() {
   return (
     <LogProvider>
-      <div className="app-container">
-        <LogList />
-        <LogEditor />
-      </div>
+      <MainLayout />
     </LogProvider>
   );
 }

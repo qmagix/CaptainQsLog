@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useLogs } from '../store/LogContext';
 import { format } from 'date-fns';
+import { ArrowLeft } from 'lucide-react';
 import AudioRecorder from './AudioRecorder';
 import MediaManager from './MediaManager';
 import './LogEditor.css';
 import './AudioRecorder.css';
 
 const LogEditor = () => {
-    const { activeLog, updateLog } = useLogs();
+    const { activeLog, updateLog, setActiveLogId } = useLogs();
     const textareaRef = useRef(null);
 
     if (!activeLog) {
@@ -25,6 +26,12 @@ const LogEditor = () => {
     return (
         <div className="editor-container">
             <div className="editor-header">
+                <button
+                    className="btn-back"
+                    onClick={() => setActiveLogId(null)}
+                >
+                    <ArrowLeft size={18} />
+                </button>
                 <div className="meta-group">
                     <label>LOG ID</label>
                     <span>{activeLog.id.slice(0, 8).toUpperCase()}</span>

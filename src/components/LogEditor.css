@@ -16,9 +16,46 @@
     padding: 20px 40px;
     display: flex;
     gap: 40px;
+    align-items: center;
     border-bottom: 1px solid var(--color-border);
     background: rgba(5, 5, 16, 0.8);
     backdrop-filter: blur(10px);
+}
+
+.btn-back {
+    display: none;
+    /* Hidden by default on desktop */
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    color: var(--color-accent-secondary);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .btn-back {
+        display: flex;
+        /* Visible on mobile */
+    }
+
+    .editor-header {
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .meta-group {
+        font-size: 0.8em;
+    }
 }
 
 .meta-group {
