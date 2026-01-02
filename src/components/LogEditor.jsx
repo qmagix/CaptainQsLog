@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useLogs } from '../store/LogContext';
 import { format } from 'date-fns';
 import { ArrowLeft } from 'lucide-react';
@@ -9,7 +9,7 @@ import './AudioRecorder.css';
 import './LogEditorControls.css';
 
 const LogEditor = () => {
-    const { activeLog, updateLog, setActiveLogId, shipName } = useLogs();
+    const { activeLog, updateLog, setActiveLogId, shipName, getDayNumber } = useLogs();
     const textareaRef = useRef(null);
 
     if (!activeLog) {
@@ -23,6 +23,17 @@ const LogEditor = () => {
             </div>
         );
     }
+
+    const dayNum = getDayNumber(activeLog);
+    const placeholderText = `Captain's Log, Day ${dayNum}...
+
+Mission status:
+
+Unexpected events:
+
+Crew morale (yourself counts):
+
+Course correction notes:`;
 
     return (
         <div className="editor-container">
@@ -66,13 +77,13 @@ const LogEditor = () => {
                 className="log-textarea"
                 value={activeLog.content}
                 onChange={(e) => updateLog(activeLog.id, { content: e.target.value })}
-                placeholder="Begin log entry..."
+                placeholder={placeholderText}
                 autoFocus
                 spellCheck="false"
             />
 
             <div className="editor-footer">
-                STATUS: RECORDING // WORDS: {activeLog.content.split(/\s+/).filter(Boolean).length}
+                STATUS: RECORDING // WORDS: {activeLog.content ? activeLog.content.split(/\s+/).filter(Boolean).length : 0}
             </div>
         </div>
     );

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { get, set } from 'idb-keyval';
+import { format } from 'date-fns';
 
 const LogContext = createContext();
 
@@ -71,6 +72,27 @@ export const LogProvider = ({ children }) => {
 
   const activeLog = logs.find(log => log.id === activeLogId) || null;
 
+  const logDayMap = React.useMemo(() => {
+    const getDateString = (timestamp) => format(timestamp, 'yyyy-MM-dd');
+    const sortedLogs = [...logs].sort((a, b) => a.timestamp - b.timestamp);
+    const uniqueDays = new Set();
+    sortedLogs.forEach(log => {
+      uniqueDays.add(getDateString(log.timestamp));
+    });
+    const sortedDays = Array.from(uniqueDays).sort();
+    const dayIndexMap = {};
+    sortedDays.forEach((dateStr, index) => {
+      dayIndexMap[dateStr] = index + 1;
+    });
+    return dayIndexMap;
+  }, [logs]);
+
+  const getDayNumber = (log) => {
+    if (!log) return 0;
+    const dateStr = format(log.timestamp, 'yyyy-MM-dd');
+    return logDayMap[dateStr] || 1;
+  };
+
   return (
     <LogContext.Provider value={{
       logs,
@@ -82,7 +104,8 @@ export const LogProvider = ({ children }) => {
       createLog,
       updateLog,
       deleteLog,
-      isLoaded
+      isLoaded,
+      getDayNumber
     }}>
       {children}
     </LogContext.Provider>

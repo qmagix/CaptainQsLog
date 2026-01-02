@@ -8,41 +8,14 @@ import { format } from 'date-fns';
 import './LogList.css';
 
 const LogList = () => {
-    const { logs, activeLogId, setActiveLogId, createLog, deleteLog } = useLogs();
-
-    const getDateString = (timestamp) => format(timestamp, 'yyyy-MM-dd');
-
-    // Calculate unique days and map each log ID to a Day Number
-    const logDayMap = React.useMemo(() => {
-        // multiple logs can share a day.
-        // We want to count distinct days present in the logs.
-        // Sort logs by timestamp ascending to calculate days chronologically
-        const sortedLogs = [...logs].sort((a, b) => a.timestamp - b.timestamp);
-
-        const uniqueDays = new Set();
-        sortedLogs.forEach(log => {
-            uniqueDays.add(getDateString(log.timestamp));
-        });
-
-        // Convert set to sorted array to get index
-        const sortedDays = Array.from(uniqueDays).sort();
-
-        // Create a map of date string -> day number (1-based)
-        const dayIndexMap = {};
-        sortedDays.forEach((dateStr, index) => {
-            dayIndexMap[dateStr] = index + 1;
-        });
-
-        return dayIndexMap;
-    }, [logs]);
+    const { logs, activeLogId, setActiveLogId, createLog, deleteLog, getDayNumber } = useLogs();
 
     const getPreview = (log) => {
         if (log.content) {
             return log.content.slice(0, 50) + (log.content.length > 50 ? '...' : '');
         }
 
-        const dateStr = getDateString(log.timestamp);
-        const dayNum = logDayMap[dateStr];
+        const dayNum = getDayNumber(log);
         return `Captain's Log, Day ${dayNum}`;
     };
 
