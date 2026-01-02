@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { useLogs } from '../store/LogContext';
 import { Plus, Trash2, FileText, Mic, Image, Film } from 'lucide-react';
 import ExportLogs from './ExportLogs';
+import SettingsModal from './SettingsModal';
 import { format } from 'date-fns';
 import './LogList.css';
 
@@ -17,12 +19,13 @@ const LogList = () => {
         <div className="log-list-container">
             <div className="log-list-header">
                 <h2>CAPTAIN'S LOG</h2>
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <div style={{ display: 'flex', gap: '8px' }}>
                     <button className="btn-new" onClick={createLog}>
                         <Plus size={18} />
                         <span>NEW</span>
                     </button>
                     <ExportLogs />
+                    <SettingsModal />
                 </div>
             </div>
 

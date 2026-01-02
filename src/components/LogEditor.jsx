@@ -9,14 +9,14 @@ import './AudioRecorder.css';
 import './LogEditorControls.css';
 
 const LogEditor = () => {
-    const { activeLog, updateLog, setActiveLogId } = useLogs();
+    const { activeLog, updateLog, setActiveLogId, shipName } = useLogs();
     const textareaRef = useRef(null);
 
     if (!activeLog) {
         return (
             <div className="editor-empty">
                 <div className="empty-content">
-                    <h1>USS ENTERPRISE</h1>
+                    <h1>{shipName}</h1>
                     <p>SYSTEM READY</p>
                     <span className="blink">_</span>
                 </div>

@@ -15,13 +15,16 @@ export const LogProvider = ({ children }) => {
   const [logs, setLogs] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeLogId, setActiveLogId] = useState(null);
+  const [shipName, setShipName] = useState('USS ENTERPRISE');
 
-  // Load logs from IndexedDB on mount
+  // Load logs and settings from IndexedDB on mount
   useEffect(() => {
-    get('captains-logs').then((val) => {
-      if (val) {
-        setLogs(val);
-      }
+    Promise.all([
+      get('captains-logs'),
+      get('ship-name')
+    ]).then(([logsVal, shipNameVal]) => {
+      if (logsVal) setLogs(logsVal);
+      if (shipNameVal) setShipName(shipNameVal);
       setIsLoaded(true);
     });
   }, []);
@@ -32,6 +35,11 @@ export const LogProvider = ({ children }) => {
       set('captains-logs', logs);
     }
   }, [logs, isLoaded]);
+
+  const setShipNameAndSave = (name) => {
+    setShipName(name);
+    set('ship-name', name);
+  };
 
   const createLog = () => {
     const newLog = {
@@ -68,11 +76,13 @@ export const LogProvider = ({ children }) => {
       logs,
       activeLogId,
       activeLog,
+      shipName,
+      setShipName: setShipNameAndSave,
       setActiveLogId,
       createLog,
       updateLog,
       deleteLog,
-      isLoaded // Export loaded state if UI wants to show a spinner
+      isLoaded
     }}>
       {children}
     </LogContext.Provider>
