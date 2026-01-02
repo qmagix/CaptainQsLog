@@ -34,6 +34,10 @@ const LogEditor = () => {
                     <ArrowLeft size={18} />
                 </button>
                 <div className="meta-group">
+                    <label>VESSEL</label>
+                    <span>{shipName}</span>
+                </div>
+                <div className="meta-group">
                     <label>LOG ID</label>
                     <span>{activeLog.id.slice(0, 8).toUpperCase()}</span>
                 </div>
