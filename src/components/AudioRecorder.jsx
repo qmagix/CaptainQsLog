@@ -11,7 +11,19 @@ const AudioRecorder = ({ audioData, onSave, onDelete }) => {
     const startRecording = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            const mediaRecorder = new MediaRecorder(stream);
+
+            // Detect supported MIME type
+            const mimeType = [
+                'audio/webm;codecs=opus',
+                'audio/webm',
+                'audio/mp4',
+                'audio/aac',
+                'audio/ogg',
+            ].find(type => MediaRecorder.isTypeSupported(type));
+
+            const options = mimeType ? { mimeType } : {};
+            const mediaRecorder = new MediaRecorder(stream, options);
+
             mediaRecorderRef.current = mediaRecorder;
             chunksRef.current = [];
 
@@ -22,7 +34,9 @@ const AudioRecorder = ({ audioData, onSave, onDelete }) => {
             };
 
             mediaRecorder.onstop = () => {
-                const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+                // Use the detected mimeType or fallback to what the recorder reports
+                const finalType = mimeType || mediaRecorder.mimeType || 'audio/webm';
+                const blob = new Blob(chunksRef.current, { type: finalType });
                 const reader = new FileReader();
                 reader.readAsDataURL(blob);
                 reader.onloadend = () => {
