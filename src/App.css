@@ -1,3 +1,8 @@
+/* Desktop Defaults */
+.mobile-only-home {
+  display: none;
+}
+
 @media (max-width: 768px) {
   #root {
     height: 100vh;
@@ -14,13 +19,38 @@
 }
 
 @media (max-width: 768px) {
+
+  /* HOME VIEW */
+  .app-container.mobile-view-home .mobile-only-home {
+    display: flex;
+    flex: 1;
+    width: 100%;
+  }
+
+  .app-container.mobile-view-home .log-list-container,
+  .app-container.mobile-view-home .editor-container,
+  .app-container.mobile-view-home .editor-empty {
+    display: none;
+  }
+
+  /* LIST VIEW */
+  .app-container.mobile-view-list .mobile-only-home {
+    display: none;
+  }
+
   .app-container.mobile-view-list .log-list-container {
     display: flex;
     width: 100%;
     max-height: 100vh;
   }
 
-  .app-container.mobile-view-list .editor-container {
+  .app-container.mobile-view-list .editor-container,
+  .app-container.mobile-view-list .editor-empty {
+    display: none;
+  }
+
+  /* EDITOR VIEW */
+  .app-container.mobile-view-editor .mobile-only-home {
     display: none;
   }
 
@@ -28,7 +58,8 @@
     display: none;
   }
 
-  .app-container.mobile-view-editor .editor-container {
+  .app-container.mobile-view-editor .editor-container,
+  .app-container.mobile-view-editor .editor-empty {
     display: flex;
     width: 100%;
   }

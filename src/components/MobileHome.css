@@ -1,0 +1,84 @@
+.mobile-home {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-image:
+        linear-gradient(rgba(5, 5, 16, 0.9), rgba(5, 5, 16, 0.9)),
+        linear-gradient(0deg, transparent 24%, var(--color-border) 25%, var(--color-border) 26%, transparent 27%, transparent 74%, var(--color-border) 75%, var(--color-border) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, var(--color-border) 25%, var(--color-border) 26%, transparent 27%, transparent 74%, var(--color-border) 75%, var(--color-border) 76%, transparent 77%, transparent);
+    background-size: 100% 100%, 60px 60px, 60px 60px;
+    background-position: center;
+    height: 100%;
+}
+
+.mobile-content {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.mobile-content h1 {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+    color: var(--color-text-muted);
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.mobile-content p {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--color-accent-primary);
+}
+
+.mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn-mobile-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 18px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.btn-new-large {
+    background: rgba(0, 240, 255, 0.15);
+    color: var(--color-accent-primary);
+    border: 1px solid var(--color-accent-primary);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.btn-new-large:active {
+    background: rgba(0, 240, 255, 0.3);
+    transform: scale(0.98);
+}
+
+.btn-view-logs {
+    background: transparent;
+    color: var(--color-accent-secondary);
+    border: 1px solid var(--color-border);
+}
+
+.btn-view-logs:active {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(0.98);
+}
