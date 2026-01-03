@@ -39,6 +39,11 @@ npm run preview
    ```
 2. Build and push the `dist` folder to a `gh-pages` branch.
 
+### Option D: Cloudflare Pages (Current Setup)
+1. This project is configured with Cloudflare Pages.
+2. Deployment is correctly triggered automatically on every `git push` to the `main` branch.
+3. No manual build steps are required.
+
 ## 4. Static Server
 You can serve the `dist` folder with any static file server:
 ```bash
