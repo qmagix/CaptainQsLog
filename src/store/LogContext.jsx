@@ -70,6 +70,18 @@ export const LogProvider = ({ children }) => {
     }
   };
 
+  const importLogs = (newLogs) => {
+    setLogs(prevLogs => {
+      const logMap = new Map(prevLogs.map(log => [log.id, log]));
+      newLogs.forEach(log => {
+        // If log already exists, we could check timestamps to decide whether to update
+        // sending 'true' for upsert for now as it's the safest for migration
+        logMap.set(log.id, log);
+      });
+      return Array.from(logMap.values()).sort((a, b) => b.timestamp - a.timestamp);
+    });
+  };
+
   const activeLog = logs.find(log => log.id === activeLogId) || null;
 
   const logDayMap = React.useMemo(() => {
@@ -96,6 +108,7 @@ export const LogProvider = ({ children }) => {
   return (
     <LogContext.Provider value={{
       logs,
+      importLogs,
       activeLogId,
       activeLog,
       shipName,
