@@ -69,6 +69,8 @@
     cursor: pointer;
     transition: all 0.2s ease;
     text-transform: uppercase;
+    text-decoration: none;
+    /* For <a> tags */
 }
 
 .btn-new-large {
@@ -91,5 +93,16 @@
 
 .btn-view-logs:active {
     background: rgba(255, 255, 255, 0.05);
+    transform: scale(0.98);
+}
+
+.btn-support {
+    background: transparent;
+    color: #5F7FFF;
+    border: 1px solid rgba(95, 127, 255, 0.3);
+}
+
+.btn-support:active {
+    background: rgba(95, 127, 255, 0.1);
     transform: scale(0.98);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLogs } from '../store/LogContext';
-import { Plus, List } from 'lucide-react';
+import { Plus, List, Coffee } from 'lucide-react';
 import './MobileHome.css';
 
 const MobileHome = ({ onViewLogs }) => {
@@ -23,6 +23,15 @@ const MobileHome = ({ onViewLogs }) => {
                     <List />
                     <span>VIEW LOG HISTORY</span>
                 </button>
+                <a
+                    href="https://www.buymeacoffee.com/qhuang"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-mobile-action btn-support"
+                >
+                    <Coffee />
+                    <span>Buy me a Coffee?</span>
+                </a>
             </div>
         </div>
     )
