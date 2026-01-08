@@ -19,21 +19,32 @@
     margin-bottom: 60px;
 }
 
-.mobile-content h1 {
+.mobile-content h1.app-title {
     font-family: var(--font-mono);
-    font-size: 1.8rem;
+    font-size: 1rem;
+    letter-spacing: 6px;
+    color: var(--color-accent-primary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    opacity: 1;
+}
+
+.mobile-content h2.ship-name {
+    font-family: var(--font-mono);
+    font-size: 2rem;
     letter-spacing: 4px;
     margin-bottom: 1rem;
-    color: var(--color-text-muted);
-    opacity: 0.8;
+    color: var(--color-text-main);
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .mobile-content p {
     font-family: var(--font-mono);
     font-size: 0.9rem;
     letter-spacing: 4px;
-    color: var(--color-accent-primary);
+    color: var(--color-text-muted);
 }
 
 .mobile-actions {

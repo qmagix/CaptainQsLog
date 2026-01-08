@@ -9,7 +9,8 @@ const MobileHome = ({ onViewLogs }) => {
     return (
         <div className="mobile-home">
             <div className="mobile-content">
-                <h1>{shipName}</h1>
+                <h1 className="app-title">CAPTAIN'S LOG</h1>
+                <h2 className="ship-name">{shipName}</h2>
                 <p>SYSTEM READY</p>
                 <span className="blink">_</span>
             </div>
