@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Square, Play, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const AudioRecorder = ({ audioData, onSave, onDelete }) => {
     const [isRecording, setIsRecording] = useState(false);
@@ -7,6 +8,7 @@ const AudioRecorder = ({ audioData, onSave, onDelete }) => {
     const mediaRecorderRef = useRef(null);
     const chunksRef = useRef([]);
     const timerRef = useRef(null);
+    const { t } = useTranslation();
 
     const startRecording = async () => {
         try {
@@ -57,7 +59,7 @@ const AudioRecorder = ({ audioData, onSave, onDelete }) => {
 
         } catch (err) {
             console.error('Error accessing microphone:', err);
-            alert('Microphone access denied or not available.');
+            alert(t('audioRecorder.micError'));
         }
     };
 
@@ -85,7 +87,7 @@ const AudioRecorder = ({ audioData, onSave, onDelete }) => {
             {!audioData && !isRecording && (
                 <button className="btn-record" onClick={startRecording}>
                     <Mic size={16} />
-                    <span>RECORD LOG</span>
+                    <span>{t('audioRecorder.recordLog')}</span>
                 </button>
             )}
 
@@ -93,7 +95,7 @@ const AudioRecorder = ({ audioData, onSave, onDelete }) => {
                 <div className="recording-status">
                     <div className="recording-indicator">
                         <span className="pulse"></span>
-                        RECORDING {formatTime(recordingTime)}
+                        {t('audioRecorder.recording')} {formatTime(recordingTime)}
                     </div>
                     <button className="btn-stop" onClick={stopRecording}>
                         <Square size={16} fill="currentColor" />
@@ -104,7 +106,7 @@ const AudioRecorder = ({ audioData, onSave, onDelete }) => {
             {audioData && (
                 <div className="audio-player-wrapper">
                     <audio controls src={audioData} className="native-audio" />
-                    <button className="btn-delete-audio" onClick={onDelete} title="Delete Audio Log">
+                    <button className="btn-delete-audio" onClick={onDelete} title={t('audioRecorder.deleteTooltip')}>
                         <Trash2 size={16} />
                     </button>
                 </div>

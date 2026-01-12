@@ -50,5 +50,11 @@
         "addPhoto": "ADD PHOTO",
         "addVideo": "ADD VIDEO",
         "fileTooLarge": "File too large. Please use files under 50MB."
+    },
+    "audioRecorder": {
+        "recordLog": "RECORD LOG",
+        "recording": "RECORDING",
+        "micError": "Microphone access denied or not available.",
+        "deleteTooltip": "Delete Audio Log"
     }
 }

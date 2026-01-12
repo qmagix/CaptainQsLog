@@ -50,5 +50,11 @@
         "addPhoto": "添加照片",
         "addVideo": "添加视频",
         "fileTooLarge": "文件过大。请使用 50MB 以下的文件。"
+    },
+    "audioRecorder": {
+        "recordLog": "录制日志",
+        "recording": "录制中",
+        "micError": "无法访问麦克风。",
+        "deleteTooltip": "删除音频日志"
     }
 }
