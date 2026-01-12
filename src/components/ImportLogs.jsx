@@ -2,11 +2,13 @@ import React, { useState, useRef } from 'react';
 import JSZip from 'jszip';
 import { useLogs } from '../store/LogContext';
 import { Upload, Loader } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const ImportLogs = ({ variant }) => {
     const { importLogs } = useLogs();
     const [isImporting, setIsImporting] = useState(false);
     const fileInputRef = useRef(null);
+    const { t } = useTranslation();
 
     const getMimeFromExt = (ext, type) => {
         if (ext === 'jpg') return 'image/jpeg';
@@ -36,7 +38,7 @@ const ImportLogs = ({ variant }) => {
             // Read logs.json
             const logsFile = zip.file("logs.json");
             if (!logsFile) {
-                throw new Error("Invalid export file: logs.json not found");
+                throw new Error(t('import.invalidFile'));
             }
 
             const logsContent = await logsFile.async("string");
@@ -93,11 +95,11 @@ const ImportLogs = ({ variant }) => {
             }));
 
             importLogs(processedLogs);
-            alert(`Successfully imported ${processedLogs.length} logs!`);
+            alert(t('import.success', { count: processedLogs.length }));
 
         } catch (err) {
             console.error("Import failed:", err);
-            alert("Failed to import logs: " + err.message);
+            alert(t('import.failure', { error: err.message }));
         } finally {
             setIsImporting(false);
             if (fileInputRef.current) {
@@ -120,7 +122,7 @@ const ImportLogs = ({ variant }) => {
                     className="btn-import-icon"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={isImporting}
-                    title="Import Logs from ZIP"
+                    title={t('import.title')}
                     style={{
                         background: 'transparent',
                         color: 'var(--color-text-muted)',
@@ -140,10 +142,10 @@ const ImportLogs = ({ variant }) => {
                     className="btn-export" // Reusing export button class for consistent styling
                     onClick={() => fileInputRef.current?.click()}
                     disabled={isImporting}
-                    title="Import Logs from ZIP"
+                    title={t('import.title')}
                 >
                     {isImporting ? <Loader size={16} className="spin" /> : <Upload size={16} />}
-                    <span>IMPORT LOGS</span>
+                    <span>{t('import.button')}</span>
                 </button>
             )}
         </>

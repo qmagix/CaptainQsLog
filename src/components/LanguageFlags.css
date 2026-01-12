@@ -1,0 +1,31 @@
+.language-flags {
+    display: inline-flex;
+    gap: 8px;
+    margin-left: 12px;
+    vertical-align: middle;
+}
+
+.btn-flag {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 4px;
+    transition: transform 0.2s, background 0.2s;
+    opacity: 0.5;
+    filter: grayscale(0.8);
+}
+
+.btn-flag:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+    filter: grayscale(0.4);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-flag.active {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.1);
+}

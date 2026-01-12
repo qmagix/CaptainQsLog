@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import JSZip from 'jszip';
 import { useLogs } from '../store/LogContext';
 import { Download, Loader } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { format } from 'date-fns';
 
 const ExportLogs = () => {
     const { logs } = useLogs();
     const [isExporting, setIsExporting] = useState(false);
+    const { t } = useTranslation();
 
     // Helper to process Data URL to Blob without string duplication overhead
     const processDataUrl = async (dataUrl) => {
@@ -99,7 +102,8 @@ const ExportLogs = () => {
             zip.file("logs.json", JSON.stringify(cleanLogs, null, 2));
 
             // Add README
-            zip.file("README.txt", `Captain's Log Export\nGenerated: ${new Date().toLocaleString()}\n\nThis archive contains your logs in JSON format and all attached media files.`);
+            const readmeContent = t('export.readme', { date: new Date().toLocaleString() });
+            zip.file("README.txt", readmeContent);
 
             // Generate Zip
             const content = await zip.generateAsync({
@@ -110,7 +114,7 @@ const ExportLogs = () => {
             const url = URL.createObjectURL(content);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `captains_log_export_${new Date().toISOString().slice(0, 10)}.zip`;
+            link.download = `captains_log_export_${format(new Date(), 'yyyy-MM-dd')}.zip`;
             document.body.appendChild(link);
             link.click();
 
@@ -133,10 +137,10 @@ const ExportLogs = () => {
             className="btn-export"
             onClick={handleExport}
             disabled={isExporting || logs.length === 0}
-            title="Export All Logs to ZIP"
+            title={t('export.title')}
         >
             {isExporting ? <Loader size={16} className="spin" /> : <Download size={16} />}
-            <span>{isExporting ? 'EXPORTING...' : 'EXPORT LOGS'}</span>
+            <span>{isExporting ? t('export.exporting') : t('export.button')}</span>
         </button>
     );
 };

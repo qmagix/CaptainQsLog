@@ -5,11 +5,14 @@ import { Plus, Trash2, FileText, Mic, Image, Film } from 'lucide-react';
 import ExportLogs from './ExportLogs';
 import ImportLogs from './ImportLogs';
 import SettingsModal from './SettingsModal';
+import LanguageFlags from './LanguageFlags';
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import './LogList.css';
 
 const LogList = () => {
     const { logs, activeLogId, setActiveLogId, createLog, deleteLog, getDayNumber } = useLogs();
+    const { t } = useTranslation();
 
     const getPreview = (log) => {
         if (log.content) {
@@ -17,20 +20,23 @@ const LogList = () => {
         }
 
         const dayNum = getDayNumber(log);
-        return `Captain's Log, Day ${dayNum}`;
+        return t('logList.defaultLogTitle', { dayNum });
     };
 
     return (
         <div className="log-list-container">
             <div className="log-list-header">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <h2 style={{ marginBottom: 0 }}>CAPTAIN'S LOG</h2>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <h2 style={{ marginBottom: 0 }}>{t('common.appTitle')}</h2>
+                        <LanguageFlags />
+                    </div>
                     <ImportLogs variant="icon" />
                 </div>
                 <div style={{ display: 'flex', gap: '8px' }}>
                     <button className="btn-new" onClick={createLog}>
                         <Plus size={18} />
-                        <span>NEW</span>
+                        <span>{t('common.new')}</span>
                     </button>
                     <ExportLogs />
                     <SettingsModal />
@@ -40,7 +46,7 @@ const LogList = () => {
             <div className="log-items">
                 {logs.length === 0 && (
                     <div className="empty-state">
-                        No logs found. Initialize new entry.
+                        {t('logList.empty')}
                     </div>
                 )}
 
@@ -63,7 +69,7 @@ const LogList = () => {
                                 className="btn-delete"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    if (window.confirm('Delete this log entry?')) deleteLog(log.id);
+                                    if (window.confirm(t('logList.confirmDelete'))) deleteLog(log.id);
                                 }}
                             >
                                 <Trash2 size={14} />

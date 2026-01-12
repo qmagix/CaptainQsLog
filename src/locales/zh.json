@@ -1,0 +1,49 @@
+{
+    "common": {
+        "appTitle": "舰长日志",
+        "new": "新建"
+    },
+    "home": {
+        "systemReady": "系统就绪",
+        "newLogEntry": "新建日志",
+        "viewLogHistory": "查看历史",
+        "buyMeACoffee": "请我喝咖啡？"
+    },
+    "settings": {
+        "configureProfile": "配置舰船档案",
+        "title": "舰船档案",
+        "vesselName": "舰船注册名称",
+        "placeholder": "例如：企业号",
+        "save": "更新注册信息",
+        "language": "语言"
+    },
+    "logList": {
+        "empty": "未找到日志。请初始化新条目。",
+        "defaultLogTitle": "舰长日志，第 {{dayNum}} 天",
+        "confirmDelete": "删除此日志条目？"
+    },
+    "editor": {
+        "placeholderHeader": "舰长日志，第 {{dayNum}} 天...",
+        "placeholderMission": "任务状态：",
+        "placeholderEvents": "意外事件：",
+        "placeholderMorale": "船员士气（包括你在内）：",
+        "placeholderNotes": "航向修正说明：",
+        "vessel": "舰船",
+        "logId": "日志 ID",
+        "stardate": "星历日期",
+        "status": "状态：记录中 // 字数：{{count}}"
+    },
+    "export": {
+        "button": "导出日志",
+        "exporting": "导出中...",
+        "title": "导出所有日志为 ZIP",
+        "readme": "舰长日志导出\n生成时间：{{date}}\n\n此存档包含您的 JSON 格式日志和所有附件媒体文件。"
+    },
+    "import": {
+        "button": "导入日志",
+        "title": "从 ZIP 导入日志",
+        "success": "成功导入 {{count}} 条日志！",
+        "failure": "导入日志失败：{{error}}",
+        "invalidFile": "无效的导出文件：未找到 logs.json"
+    }
+}

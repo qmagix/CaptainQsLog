@@ -1,0 +1,49 @@
+{
+    "common": {
+        "appTitle": "CAPTAIN'S LOG",
+        "new": "NEW"
+    },
+    "home": {
+        "systemReady": "SYSTEM READY",
+        "newLogEntry": "NEW LOG ENTRY",
+        "viewLogHistory": "VIEW LOG HISTORY",
+        "buyMeACoffee": "Buy me a Coffee?"
+    },
+    "settings": {
+        "configureProfile": "Configure Ship Profile",
+        "title": "SHIP PROFILE",
+        "vesselName": "VESSEL REGISTRY NAME",
+        "placeholder": "e.g. USS ENTERPRISE",
+        "save": "UPDATE REGISTRY",
+        "language": "LANGUAGE"
+    },
+    "logList": {
+        "empty": "No logs found. Initialize new entry.",
+        "defaultLogTitle": "Captain's Log, Day {{dayNum}}",
+        "confirmDelete": "Delete this log entry?"
+    },
+    "editor": {
+        "placeholderHeader": "Captain's Log, Day {{dayNum}}...",
+        "placeholderMission": "Mission status:",
+        "placeholderEvents": "Unexpected events:",
+        "placeholderMorale": "Crew morale (yourself counts):",
+        "placeholderNotes": "Course correction notes:",
+        "vessel": "VESSEL",
+        "logId": "LOG ID",
+        "stardate": "STARDATE",
+        "status": "STATUS: RECORDING // WORDS: {{count}}"
+    },
+    "export": {
+        "button": "EXPORT LOGS",
+        "exporting": "EXPORTING...",
+        "title": "Export All Logs to ZIP",
+        "readme": "Captain's Log Export\nGenerated: {{date}}\n\nThis archive contains your logs in JSON format and all attached media files."
+    },
+    "import": {
+        "button": "IMPORT LOGS",
+        "title": "Import Logs from ZIP",
+        "success": "Successfully imported {{count}} logs!",
+        "failure": "Failed to import logs: {{error}}",
+        "invalidFile": "Invalid export file: logs.json not found"
+    }
+}

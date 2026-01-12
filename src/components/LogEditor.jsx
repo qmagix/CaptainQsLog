@@ -4,12 +4,14 @@ import { format } from 'date-fns';
 import { ArrowLeft } from 'lucide-react';
 import AudioRecorder from './AudioRecorder';
 import MediaManager from './MediaManager';
+import { useTranslation } from 'react-i18next';
 import './LogEditor.css';
 import './AudioRecorder.css';
 import './LogEditorControls.css';
 
 const LogEditor = () => {
     const { activeLog, updateLog, setActiveLogId, shipName, getDayNumber } = useLogs();
+    const { t } = useTranslation();
     const textareaRef = useRef(null);
 
     if (!activeLog) {
@@ -17,7 +19,7 @@ const LogEditor = () => {
             <div className="editor-empty">
                 <div className="empty-content">
                     <h1>{shipName}</h1>
-                    <p>SYSTEM READY</p>
+                    <p>{t('home.systemReady')}</p>
                     <span className="blink">_</span>
                 </div>
             </div>
@@ -25,15 +27,15 @@ const LogEditor = () => {
     }
 
     const dayNum = getDayNumber(activeLog);
-    const placeholderText = `Captain's Log, Day ${dayNum}...
+    const placeholderText = `${t('editor.placeholderHeader', { dayNum })}
 
-Mission status:
+${t('editor.placeholderMission')}
 
-Unexpected events:
+${t('editor.placeholderEvents')}
 
-Crew morale (yourself counts):
+${t('editor.placeholderMorale')}
 
-Course correction notes:`;
+${t('editor.placeholderNotes')}`;
 
     return (
         <div className="editor-container">
@@ -45,15 +47,15 @@ Course correction notes:`;
                     <ArrowLeft size={18} />
                 </button>
                 <div className="meta-group">
-                    <label>VESSEL</label>
+                    <label>{t('editor.vessel')}</label>
                     <span>{shipName}</span>
                 </div>
                 <div className="meta-group">
-                    <label>LOG ID</label>
+                    <label>{t('editor.logId')}</label>
                     <span>{activeLog.id.slice(0, 8).toUpperCase()}</span>
                 </div>
                 <div className="meta-group">
-                    <label>STARDATE</label>
+                    <label>{t('editor.stardate')}</label>
                     <span>{format(activeLog.timestamp, 'yyyy.MM.dd.HH:mm')}</span>
                 </div>
             </div>
@@ -83,7 +85,7 @@ Course correction notes:`;
             />
 
             <div className="editor-footer">
-                STATUS: RECORDING // WORDS: {activeLog.content ? activeLog.content.split(/\s+/).filter(Boolean).length : 0}
+                {t('editor.status', { count: activeLog.content ? activeLog.content.split(/\s+/).filter(Boolean).length : 0 })}
             </div>
         </div>
     );
