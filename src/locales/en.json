@@ -45,5 +45,10 @@
         "success": "Successfully imported {{count}} logs!",
         "failure": "Failed to import logs: {{error}}",
         "invalidFile": "Invalid export file: logs.json not found"
+    },
+    "media": {
+        "addPhoto": "ADD PHOTO",
+        "addVideo": "ADD VIDEO",
+        "fileTooLarge": "File too large. Please use files under 50MB."
     }
 }

@@ -45,5 +45,10 @@
         "success": "成功导入 {{count}} 条日志！",
         "failure": "导入日志失败：{{error}}",
         "invalidFile": "无效的导出文件：未找到 logs.json"
+    },
+    "media": {
+        "addPhoto": "添加照片",
+        "addVideo": "添加视频",
+        "fileTooLarge": "文件过大。请使用 50MB 以下的文件。"
     }
 }

@@ -1,17 +1,19 @@
 import React, { useRef } from 'react';
 import { Image, Film, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import './MediaManager.css';
 
 const MediaManager = ({ images = [], videos = [], onUpdate }) => {
     const imageInputRef = useRef(null);
     const videoInputRef = useRef(null);
+    const { t } = useTranslation();
 
     const handleFileSelect = (event, type) => {
         const file = event.target.files[0];
         if (!file) return;
 
         if (file.size > 50 * 1024 * 1024) {
-            alert("File too large. Please use files under 50MB.");
+            alert(t('media.fileTooLarge'));
             return;
         }
 
@@ -47,11 +49,11 @@ const MediaManager = ({ images = [], videos = [], onUpdate }) => {
             <div className="media-controls">
                 <button className="btn-media" onClick={() => imageInputRef.current.click()}>
                     <Image size={16} />
-                    <span>ADD PHOTO</span>
+                    <span>{t('media.addPhoto')}</span>
                 </button>
                 <button className="btn-media" onClick={() => videoInputRef.current.click()}>
                     <Film size={16} />
-                    <span>ADD VIDEO</span>
+                    <span>{t('media.addVideo')}</span>
                 </button>
 
                 <input
