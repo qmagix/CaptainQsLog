@@ -18,7 +18,7 @@
         "language": "语言"
     },
     "logList": {
-        "empty": "未找到日志。请初始化新条目。",
+        "empty": "欢迎来到舰长日志！欢迎开始记录您的旅程。",
         "defaultLogTitle": "舰长日志，第 {{dayNum}} 天",
         "confirmDelete": "删除此日志条目？"
     },
